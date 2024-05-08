@@ -59,20 +59,20 @@
 			})
 		}
 
-		document.getElementById('go_previous').addEventListener('click', (e) => {
+		document.getElementById("go_previous").addEventListener('click', (e) => {
 			if(myState.pdf == null || myState.currentPage == 1) return
 			
 			myState.currentPage = myState.currentPage - 1
-			documen.getElementById('current_page').value = myState.currentPage
+			document.getElementById('current_page').value = myState.currentPage
 			
 			render()
 		})
 
-		document.getElementById('go_next').addEventListener('click', (e) => {
+		document.getElementById("go_next").addEventListener('click', (e) => {
 			if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages) return;
 			
 			myState.currentPage = myState.currentPage + 1
-			documen.getElementById('current_page').value = myState.currentPage
+			document.getElementById('current_page').value = myState.currentPage
 			
 			render()
 		})
