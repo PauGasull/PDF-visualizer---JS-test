@@ -19,7 +19,7 @@
 			</div>
 			<div id="navigation-controls">
 				<button id="go_previous">Previous</button>
-				<input type="number" id="current_page" value="1"/>
+				<p id="current_page">1</p>
 				<button id="go_next">Next</button>
 			</div>
 			<div id="zoom-controls">
@@ -63,18 +63,32 @@
 			if(myState.pdf == null || myState.currentPage == 1) return
 			
 			myState.currentPage = myState.currentPage - 1
-			document.getElementById('current_page').value = myState.currentPage
+			document.getElementById('current_page').innerText = myState.currentPage
 			
 			render()
 		})
 
 		document.getElementById("go_next").addEventListener('click', (e) => {
-			if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages) return;
+			if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages-1) return;
 			
 			myState.currentPage = myState.currentPage + 1
-			document.getElementById('current_page').value = myState.currentPage
+			document.getElementById('current_page').innerText = myState.currentPage
 			
 			render()
 		})
-	</script>
+
+		document.getElementById("zoom_in").addEventListener('click', (e) => {
+			if(myState.pdf == null) return;
+			myState.zoom = myState.zoom += 0.5;
+
+			render()
+		})
+
+		document.getElementById("zoom_out").addEventListener('click', (e) => {
+			if(myState.pdf == null) return;
+			myState.zoom = myState.zoom -= 0.5;
+
+			render()
+		})
+		</script>
 </html>
