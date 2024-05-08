@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PDF Viewer</title>
+	</head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+	<body>
+		<div id="my_pdf_viewer">
+			<div id="canvas_container">
+				<canvas id="pdf_renderer"></canvas>	
+			</div>
+			<div id="navigation-controls">
+				<button id="go_previous">Previous</button>
+				<input type="number" id="current_page" value="1"/>
+				<button id="go_next">Next</button>
+			</div>
+			<div id="zoom-controls">
+				<button id="zoom_in">+</button>
+				<button id="zoom_out">-</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		var myState = {
+			pdf:null,
+			currentPage:1,
+			zoom:1
+		}
+		
+		pdfjsLib.getDocument("d00 - Documentacio.pdf").then(pdf => {
+			myState.pdf = pdf
+			render()
+		})
+		
+		function render(){
+			myState.pdf.getPage(myState.currentPage).then(page => {
+				var canvas = document.getElementBtId("pdf_renderer")
+				var ctx = canvas.getContext("2d")
+				var viewport = page.getViewport(myState.zoom)
+				
+				canvas.width = viewport.widht;
+				canvas.height = viewport.height;
+				
+				// render page
+				
+				page.render({
+					canvasContext:ctx,
+					viewport:viewport
+				})
+				
+			})
+		}
+	</script>
+</html>
