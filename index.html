@@ -9,6 +9,7 @@
 		width: 1250px;
 		height: 450px;
 		overflow: auto;
+		text-align: center;
 	}
 	</style>
 	<body>
@@ -46,7 +47,7 @@
 				var viewport = page.getViewport(myState.zoom)
 				
 				canvas.width = viewport.width
-				canvas.height = viewport.height;
+				canvas.height = viewport.height
 				
 				// render page
 				
@@ -57,5 +58,23 @@
 				
 			})
 		}
+
+		document.getElementById('go_previous').addEventListener('click', (e) => {
+			if(myState.pdf == null || myState.currentPage == 1) return
+			
+			myState.currentPage = myState.currentPage - 1
+			documen.getElementById('current_page').value = myState.currentPage
+			
+			render()
+		})
+
+		document.getElementById('go_next').addEventListener('click', (e) => {
+			if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages) return;
+			
+			myState.currentPage = myState.currentPage + 1
+			documen.getElementById('current_page').value = myState.currentPage
+			
+			render()
+		})
 	</script>
 </html>
