@@ -7,7 +7,7 @@
 	<style>
 	#canvas_container{
 		width: 1250px;
-		height: auto;
+		height: 450px;
 		overflow: auto;
 		text-align: center;
 	}
@@ -86,7 +86,7 @@
 
 		document.getElementById("zoom_out").addEventListener('click', (e) => {
 			if(myState.pdf == null) return;
-			myState.zoom = myState.zoom - 0.5;
+			myState.zoom = myState.zoom -= 0.5;
 
 			render()
 		})
