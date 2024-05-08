@@ -34,7 +34,7 @@
 		
 		function render(){
 			myState.pdf.getPage(myState.currentPage).then(page => {
-				var canvas = document.getElementBtId("pdf_renderer")
+				var canvas = document.getElementById("pdf_renderer")
 				var ctx = canvas.getContext("2d")
 				var viewport = page.getViewport(myState.zoom)
 				
